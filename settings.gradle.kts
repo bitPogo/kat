@@ -35,12 +35,14 @@ plugins {
 includeBuild("setup")
 
 include(
-    ":kmp-lib",
-    ":example-android-application"
+    ":shared",
+    ":backend",
+    ":frontend:shared",
+    ":frontend:example-android-application"
 )
 
 buildCache {
     localGithub()
 }
 
-rootProject.name = "template-project"
+rootProject.name = "Awesome_Random_Cats"

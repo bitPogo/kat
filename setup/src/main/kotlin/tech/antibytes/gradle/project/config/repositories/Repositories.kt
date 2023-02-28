@@ -13,6 +13,7 @@ private val githubGroups = listOf(
     "tech.antibytes.kfixture",
     "tech.antibytes.test-utils-kmp",
     "tech.antibytes.kmock",
+    "tech.antibytes.awesomecats",
 )
 
 object Repositories {
