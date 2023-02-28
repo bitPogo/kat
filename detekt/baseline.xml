@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  ~ Copyright (c) 2023 Matthias Geisler (bitPogo) / All rights reserved.
+  ~
+  ~ Use of this source code is governed by Apache v2.0
+  -->
+
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>EmptyKtFile:settings.gradle.kts$.settings.gradle.kts</ID>
+    <ID>MagicNumber:Dangerfile.df.kts$1000</ID>
+    <ID>MagicNumber:Dangerfile.df.kts$20</ID>
+    <ID>MagicNumber:Dangerfile.df.kts$2000</ID>
+    <ID>MagicNumber:Dangerfile.df.kts$500</ID>
+    <ID>MagicNumber:settings.gradle.kts$30</ID>
+    <ID>MaxLineLength:Dangerfile.df.kts$val</ID>
+    <ID>MaxLineLength:Dependency.kt$Dependency.AntiBytes.Test.AndroidTest$const val annotations = "tech.antibytes.test-utils-kmp:test-utils-annotations-android:${Version.antibytes.test}"</ID>
+    <ID>MaxLineLength:Dependency.kt$Dependency.AntiBytes.Test.AndroidTest$const val coroutine = "tech.antibytes.test-utils-kmp:test-utils-coroutine-android:${Version.antibytes.test}"</ID>
+    <ID>MaxLineLength:Dependency.kt$Dependency.AntiBytes.Test.JsTest$const val annotations = "tech.antibytes.test-utils-kmp:test-utils-annotations-js:${Version.antibytes.test}"</ID>
+    <ID>MaxLineLength:Dependency.kt$Dependency.AntiBytes.Test.JvmTest$const val annotations = "tech.antibytes.test-utils-kmp:test-utils-annotations-jvm:${Version.antibytes.test}"</ID>
+    <ID>MaxLineLength:GradlePlugin.kt$GradlePlugin$const val runtimeConfig = "tech.antibytes.gradle-plugins:antibytes-runtime-configuration:${Version.gradle.antibytes}"</ID>
+    <ID>MaxLineLength:build.gradle.kts$config = files("$projectDir/detekt/config.yml")</ID>
+    <ID>TooGenericExceptionCaught:SuspendingFunctionWrapper.kt$SuspendingFunctionWrapper$error: Throwable</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val androidMain by getting { dependencies { implementation(Dependency.multiplatform.kotlin.android) implementation(Dependency.multiplatform.coroutines.android) implementation(LocalDependency.sqldelight.android) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val androidTest by getting { dependsOn(androidTestFixtures) dependsOn(androidTestFixturesDebug) dependsOn(androidTestFixturesRelease) dependsOn(androidAndroidTestRelease) dependencies { implementation(Dependency.multiplatform.test.jvm) implementation(Dependency.multiplatform.test.junit) implementation(Dependency.android.test.ktx) implementation(Dependency.android.test.robolectric) implementation(Dependency.android.test.junit) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val commonMain by getting { dependencies { implementation(Dependency.multiplatform.kotlin.common) implementation(Dependency.multiplatform.coroutines.common) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val jsMain by getting { dependencies { implementation(Dependency.multiplatform.kotlin.js) implementation(Dependency.js.nodejs) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val jsTest by getting { dependencies { implementation(Dependency.multiplatform.test.js) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val jvmMain by getting { dependencies { implementation(Dependency.multiplatform.kotlin.jdk8) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val jvmTest by getting { dependencies { dependsOn(commonTest) implementation(Dependency.multiplatform.test.jvm) implementation(Dependency.multiplatform.test.junit) } }</ID>
+  </CurrentIssues>
+</SmellBaseline>

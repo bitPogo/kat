@@ -1,0 +1,67 @@
+name: Antibytes CI - Publish Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-linux:
+    uses: bitpogo/workflows/.github/workflows/shared-build-linux.yml@v1.0.0
+    concurrency:
+      group: build-linux-${{ github.workflow }}-${{ github.head_ref }}
+      cancel-in-progress: true
+
+  build-macos:
+    uses: bitpogo/workflows/.github/workflows/shared-build-macos.yml@v1.0.0
+    concurrency:
+      group: build-macos
+      cancel-in-progress: true
+
+  check-android:
+    needs: build-linux
+    uses: bitpogo/workflows/.github/workflows/shared-test-android-linux.yml@v1.0.0
+    with:
+      projects: "[':playground', ':integration-kmp']"
+      api-level: "['31']"
+      arch: "['x86_64']"
+      coverage: false
+      cache-reports: false
+    concurrency:
+      group: check-android-${{ github.workflow }}-${{ github.head_ref }}
+      cancel-in-progress: true
+
+  check:
+    needs: [ build-macos, build-linux ]
+    uses: bitpogo/workflows/.github/workflows/shared-test-kmp.yml@v1.0.0
+    with:
+      cleanup: false
+      platforms: "['ios', 'macos', 'tvos', 'watchos', 'linux-all', 'mingw']"
+    concurrency:
+      group: check
+      cancel-in-progress: true
+
+  # docs:
+  #  needs: [ check, check-android ]
+  #  uses: bitpogo/workflows/.github/workflows/shared-mkdocs-release.yml@v1.0.0
+  #  secrets:
+  #    github-token: ${{ secrets.GITHUB_TOKEN }}
+  #  concurrency:
+  #    group: docs
+  #    cancel-in-progress: true
+
+  # publish:
+  #  needs: [ check, check-android ]
+  #  uses: bitpogo/workflows/.github/workflows/shared-publish-release.yml@v1.0.0
+  #  with:
+  #    uses-mips: true
+  #  secrets:
+  #    upload-username: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_USERNAME }}
+  #    upload-token: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_TOKEN }}
+  #    maven-key: ${{ secrets.MAVEN_GPG_KEY }}
+  #    maven-pass: ${{ secrets.MAVEN_GPG_PASS }}
+  #    ossr-username: ${{ secrets.OSSR_USERNAME }}
+  #    ossr-password: ${{ secrets.OSSR_PASSWORD }}
+  #  concurrency:
+  #    group: publish
+  #    cancel-in-progress: true

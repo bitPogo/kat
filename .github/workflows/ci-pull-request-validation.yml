@@ -1,0 +1,88 @@
+name: Antibytes CI - Pull-Request Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, edited, reopened]
+    branches:
+      - main
+      - feature/*
+      - release/*
+      - core/*
+      - plugin/*
+      - bugfix/*
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    uses: bitpogo/workflows/.github/workflows/shared-build-linux.yml@v1.0.0
+    concurrency:
+      group: build-linux-${{ github.workflow }}-${{ github.head_ref }}
+      cancel-in-progress: true
+
+  build-macos:
+    uses: bitpogo/workflows/.github/workflows/shared-build-macos.yml@v1.0.0
+    concurrency:
+      group: build-macos
+      cancel-in-progress: true
+
+  coding-conventions:
+    needs: build-linux
+    uses: bitpogo/workflows/.github/workflows/shared-coding-conventions-linux.yml@v1.0.0
+    with:
+      cache-reports: true
+      detekt: false
+      api-check: false
+    concurrency:
+      group: coding-conventions-${{ github.workflow }}-${{ github.head_ref }}
+      cancel-in-progress: true
+
+  # check-android:
+  #  needs: build-linux
+  #  uses: bitpogo/workflows/.github/workflows/shared-test-android-linux.yml@main
+  #  with:
+  #    projects: "[':example-android-application']"
+  #    api-level: "['31']"
+  #    arch: "['x86_64']"
+  #    coverage: true
+  #    cache-reports: true
+  #  concurrency:
+  #    group: check-android-${{ github.workflow }}-${{ github.head_ref }}
+  #    cancel-in-progress: true
+
+  coverage:
+    needs: [ coding-conventions ] #, check-android ]
+    uses: bitpogo/workflows/.github/workflows/shared-coverage-linux.yml@v1.0.0
+    with:
+      kmp: true
+      verify-kmp: false
+      restore-cached-reports: true
+    #  use-sonar: true
+    secrets:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+    #  sonar-token: ${{ secrets.SONAR_TOKEN }}
+    concurrency:
+      group: coverage-${{ github.workflow }}-${{ github.head_ref }}
+      cancel-in-progress: true
+
+  check:
+    needs: [ build-macos, build-linux ]
+    uses: bitpogo/workflows/.github/workflows/shared-test-kmp.yml@v1.0.0
+    with:
+      platforms: "['ios', 'macos', 'tvos', 'watchos', 'linux-js', 'mingw']"
+    concurrency:
+      group: check-${{ github.workflow }}-${{ github.head_ref }}
+      cancel-in-progress: true
+
+  # publish:
+  #  needs: [ coverage, check ]
+  #  uses: bitpogo/workflows/.github/workflows/shared-publish-pull-request.yml@v1.0.0
+  #  with:
+  #    uses-mips: true
+  #  secrets:
+  #    upload-username: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_USERNAME }}
+  #    upload-token: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_TOKEN }}
+  #    maven-key: ${{ secrets.MAVEN_GPG_KEY }}
+  #    maven-pass: ${{ secrets.MAVEN_GPG_PASS }}
+  #  concurrency:
+  #    group: publish-${{ github.workflow }}-${{ github.head_ref }}
+  #    cancel-in-progress: true
