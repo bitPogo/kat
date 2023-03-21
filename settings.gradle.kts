@@ -38,9 +38,10 @@ include(
     ":shared",
     ":backend",
     ":frontend:shared-feature",
-    ":frontend:js",
+    ":frontend:shared-ui",
     ":frontend:coroutine-wrapper",
-    ":frontend:example-android-application"
+    ":frontend:android",
+    ":frontend:js",
 )
 
 buildCache {

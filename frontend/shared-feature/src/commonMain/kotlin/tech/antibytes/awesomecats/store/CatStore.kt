@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.core.KoinApplication
+import tech.antibytes.awesomecats.common.CAT_HOST
 import tech.antibytes.awesomecats.store.di.initKoin
 import tech.antibytes.pixabay.sdk.ClientContract
 import tech.antibytes.wrapper.coroutine.wrapper.CoroutineWrapperContract
@@ -53,13 +54,14 @@ class CatStore internal constructor(
         }
     }
 
-    companion object {
-        fun getInstance(
+    companion object : CatStoreFactoryContract {
+        override fun getInstance(
             logger: ClientContract.Logger,
             connection: ClientContract.ConnectivityManager,
             seed: Int,
             producerScope: CoroutineWrapperContract.CoroutineScopeDispatcher,
-            consumerScope: CoroutineWrapperContract.CoroutineScopeDispatcher
+            consumerScope: CoroutineWrapperContract.CoroutineScopeDispatcher,
+            host: String
         ): CatStoreContract {
             return CatStore(
                 initKoin(
@@ -67,7 +69,8 @@ class CatStore internal constructor(
                     connection,
                     seed,
                     producerScope,
-                    consumerScope
+                    consumerScope,
+                    host
                 )
             )
         }

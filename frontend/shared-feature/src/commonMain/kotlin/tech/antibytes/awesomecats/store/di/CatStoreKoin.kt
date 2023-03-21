@@ -14,6 +14,7 @@ import org.koin.dsl.module
 import tech.antibytes.awesomecats.store.CatState
 import tech.antibytes.awesomecats.store.UseCaseContract
 import tech.antibytes.awesomecats.store.data.Repository
+import tech.antibytes.awesomecats.store.data.RepositoryContract.HOST
 import tech.antibytes.awesomecats.store.data.client.CatClient
 import tech.antibytes.awesomecats.store.domain.RepositoryContract
 import tech.antibytes.awesomecats.store.domain.UseCase
@@ -27,11 +28,12 @@ private fun resolveCatStoreParameterModule(
     logger: ClientContract.Logger,
     connection: ClientContract.ConnectivityManager,
     seed: Int,
+    host: String
 ): Module {
     return module {
         factory { producerScope }
         single { Random(seed) }
-        single { CatClient.getInstance(logger, connection) }
+        single { CatClient.getInstance(logger, connection, host) }
     }
 }
 
@@ -73,6 +75,7 @@ internal fun initKoin(
     seed: Int,
     producerScope: CoroutineScopeDispatcher,
     consumerScope: CoroutineScopeDispatcher,
+    host: String = HOST
 ): KoinApplication {
     return koinApplication {
         modules(
@@ -81,6 +84,7 @@ internal fun initKoin(
                 logger,
                 connection,
                 seed,
+                host,
             ),
             resolveRepositories(),
             resolveUseCase(),

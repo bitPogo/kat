@@ -35,18 +35,21 @@ class RepositorySpec {
 
     @Test
     @JsName("fn1")
-    fun `Given fetchFrontendCat and the Response is invalid it fails`() = runTest {
+    fun `Given fetchFrontendCat and the Response is invalid it returns DefaultCat`() = runTest {
         // Given
         val response = "{}"
         val client: ClientMock = kmock()
 
         client._fetchCat returns response
 
+        // When
+        val actual = Repository(client, TestRandom(23)).fetchFrontendCat()
+
         // Then
-        assertFailsWith<Throwable> {
-            // When
-            Repository(client, TestRandom(23)).fetchFrontendCat()
-        }
+        actual mustBe FrontendCat(
+            "https://i.ytimg.com/vi/esxNJjOoTOQ/maxresdefault.jpg",
+            0
+        )
     }
 
     @Test

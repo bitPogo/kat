@@ -6,6 +6,7 @@
 
 package tech.antibytes.awesomecats.store.data
 
+import tech.antibytes.awesomecats.common.CAT_HOST
 import tech.antibytes.awesomecats.common.CAT_PORT
 import tech.antibytes.pixabay.sdk.ClientContract
 
@@ -29,10 +30,11 @@ internal object RepositoryContract {
         fun getInstance(
             logger: ClientContract.Logger,
             connection: ClientContract.ConnectivityManager,
+            host: String = HOST,
         ): Client
     }
 
     internal val ENDPOINT = listOf("/")
-    internal const val HOST = "0.0.0.0"
+    internal const val HOST = CAT_HOST
     internal const val PORT = CAT_PORT.toString()
 }

@@ -14,7 +14,6 @@ import io.ktor.http.URLProtocol
 import kotlinx.serialization.json.Json
 import tech.antibytes.awesomecats.store.data.RepositoryContract
 import tech.antibytes.awesomecats.store.data.RepositoryContract.ENDPOINT
-import tech.antibytes.awesomecats.store.data.RepositoryContract.HOST
 import tech.antibytes.awesomecats.store.data.RepositoryContract.PORT
 import tech.antibytes.awesomecats.store.data.client.networking.ClientConfigurator
 import tech.antibytes.awesomecats.store.data.client.networking.HttpErrorMapper
@@ -86,6 +85,7 @@ internal class CatClient constructor(
 
         private fun initRequestBuilder(
             logger: ClientContract.Logger,
+            host: String
         ): NetworkingContract.RequestBuilderFactory {
             return RequestBuilder.Factory(
                 client = HttpClient().config {
@@ -97,7 +97,7 @@ internal class CatClient constructor(
                     )
                 },
                 protocol = URLProtocol.HTTP,
-                host = HOST,
+                host = host,
                 port = PORT.toIntOrNull(),
             )
         }
@@ -105,10 +105,12 @@ internal class CatClient constructor(
         override fun getInstance(
             logger: ClientContract.Logger,
             connection: ClientContract.ConnectivityManager,
+            host: String
         ): RepositoryContract.Client {
             return CatClient(
                 requestBuilder = initRequestBuilder(
                     logger,
+                    host
                 ),
                 connectivityManager = connection,
             )

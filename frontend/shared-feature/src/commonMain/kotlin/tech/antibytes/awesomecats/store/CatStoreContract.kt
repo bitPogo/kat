@@ -6,6 +6,7 @@
 
 package tech.antibytes.awesomecats.store
 
+import tech.antibytes.awesomecats.common.CAT_HOST
 import tech.antibytes.awesomecats.store.model.FrontendCat
 import tech.antibytes.pixabay.sdk.ClientContract
 import tech.antibytes.wrapper.coroutine.result.State
@@ -33,5 +34,6 @@ interface CatStoreFactoryContract {
         seed: Int,
         producerScope: CoroutineWrapperContract.CoroutineScopeDispatcher,
         consumerScope: CoroutineWrapperContract.CoroutineScopeDispatcher,
+        host: String = CAT_HOST,
     ): CatStoreContract
 }

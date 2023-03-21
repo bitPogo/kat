@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">PixabayAlbum</string>
+    <string name="username_indicator">by</string>
+    <string name="overview_search_placeholder">Your query</string>
+    <string name="overview_search_run">Run the query</string>
+    <string name="overview_dialog_text">You want to see details?</string>
+    <string name="overview_dialog_accept">Show me</string>
+    <string name="overview_dialog_dismiss">No thanks</string>
+    <string name="detailview_author">Author</string>
+    <string name="detailview_tag">Tags</string>
+    <string name="detailview_like">Likes</string>
+    <string name="detailview_comment">Comments</string>
+    <string name="detailview_download">Downloads</string>
+    <string name="detailview_cancel">Back to overview</string>
+    <string name="no_connection">It seems you are unconnected!</string>
+    <string name="no_result">Nothing was found!</string>
+</resources>

@@ -24,6 +24,13 @@ internal class Repository(
     }
 
     override suspend fun fetchFrontendCat(): FrontendCat {
-        return Cat.fromString(client.fetchCat()).toFontEndCat()
+        return try {
+            Cat.fromString(client.fetchCat()).toFontEndCat()
+        } catch (_: Throwable) {
+            FrontendCat(
+                "https://i.ytimg.com/vi/esxNJjOoTOQ/maxresdefault.jpg",
+                0
+            )
+        }
     }
 }

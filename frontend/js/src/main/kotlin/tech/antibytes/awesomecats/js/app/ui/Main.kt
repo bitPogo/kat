@@ -35,7 +35,7 @@ data class AppStateContainer(
 ) : AppState
 
 
-val viewModel = CatStore.getInstance(
+val store = CatStore.getInstance(
     Logger,
     { true },
     42,
@@ -100,7 +100,7 @@ class Application() : Component<Props, AppState>() {
 }*/
 
 fun requestCat() {
-    viewModel.requestACat()
+    store.requestACat()
 }
 
 val rootComponent = FC<Props> {
@@ -117,7 +117,7 @@ val rootComponent = FC<Props> {
         val divider = Divider("divider")
         val newCat = SimpleButton("Get a new Cat") {
             requestCat()
-            viewModel.catState.subscribe {
+            store.catState.subscribe {
                 if (it is CatState.Accepted) {
                     appState = AppStateContainer(
                         it.value.purrLevel.toString(),

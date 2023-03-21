@@ -24,12 +24,13 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.runBlocking
 import tech.antibytes.awesomecats.backend.di.composeApplication
 import tech.antibytes.awesomecats.backend.pixabay.domain.usecase.UsecaseContract
+import tech.antibytes.awesomecats.common.CAT_HOST
 import tech.antibytes.awesomecats.common.CAT_PORT
 
 private val koin = composeApplication()
 
 fun main() {
-    embeddedServer(CIO, host = "0.0.0.0", port = CAT_PORT) {
+    embeddedServer(CIO, host = CAT_HOST, port = CAT_PORT) {
         addCORS()
         route()
     }.start(wait = true)
