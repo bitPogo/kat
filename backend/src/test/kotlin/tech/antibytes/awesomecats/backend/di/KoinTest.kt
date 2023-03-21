@@ -8,7 +8,7 @@ package tech.antibytes.awesomecats.backend.di
 
 import tech.antibytes.awesomecats.backend.pixabay.domain.usecase.UsecaseContract
 import tech.antibytes.util.test.isNot
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 
 class KoinTest {
     @Test

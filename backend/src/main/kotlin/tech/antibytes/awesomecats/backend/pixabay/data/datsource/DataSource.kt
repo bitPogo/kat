@@ -7,12 +7,12 @@
 package tech.antibytes.awesomecats.backend.pixabay.data.datsource
 
 import com.github.michaelbull.result.Result
+import kotlin.random.Random
+import kotlin.random.nextUInt
+import tech.antibytes.awesomecats.backend.pixabay.data.repository.DataSourceContract
 import tech.antibytes.pixabay.sdk.ClientContract.Client
 import tech.antibytes.pixabay.sdk.error.PixabayClientError
 import tech.antibytes.pixabay.sdk.model.PixabayResponse
-import tech.antibytes.awesomecats.backend.pixabay.data.repository.DataSourceContract
-import kotlin.random.Random
-import kotlin.random.nextUInt
 
 internal class DataSource(
     private val client: Client,

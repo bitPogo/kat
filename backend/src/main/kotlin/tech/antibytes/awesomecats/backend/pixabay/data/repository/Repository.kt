@@ -8,9 +8,9 @@ package tech.antibytes.awesomecats.backend.pixabay.data.repository
 
 import com.github.michaelbull.result.unwrap
 import kotlin.random.Random
-import tech.antibytes.pixabay.sdk.model.PixabayItem
 import tech.antibytes.awesomecats.backend.pixabay.domain.usecase.RepositoryContract
-import tech.antibytes.awesomecats.domain.entity.Cat
+import tech.antibytes.awesomecats.common.entity.Cat
+import tech.antibytes.pixabay.sdk.model.PixabayItem
 
 internal class Repository(
     private val source: DataSourceContract,

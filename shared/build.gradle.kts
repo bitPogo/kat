@@ -78,6 +78,10 @@ kotlin {
 
                 implementation(antibytesCatalog.common.kotlinx.serialization.core)
                 implementation(antibytesCatalog.common.kotlinx.serialization.json)
+
+
+                api(antibytesCatalog.common.ktor.client.logging)
+                api(libs.sdk)
             }
         }
         val commonTest by getting {

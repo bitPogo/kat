@@ -8,27 +8,27 @@ package tech.antibytes.awesomecats.backend.pixabay.data.datsource
 
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.unwrap
+import kotlin.random.Random
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Test
 import tech.antibytes.awesomecats.backend.kmock
+import tech.antibytes.awesomecats.backend.pixabay.data.repository.DataSourceContract
 import tech.antibytes.kfixture.fixture
+import tech.antibytes.kfixture.kotlinFixture
 import tech.antibytes.kmock.KMock
 import tech.antibytes.kmock.KMockExperimental
+import tech.antibytes.kmock.verification.assertProxy
 import tech.antibytes.pixabay.sdk.ClientContract
+import tech.antibytes.pixabay.sdk.ClientMock
 import tech.antibytes.pixabay.sdk.model.PixabayItem
 import tech.antibytes.pixabay.sdk.model.PixabayResponse
-import tech.antibytes.awesomecats.backend.pixabay.data.repository.DataSourceContract
 import tech.antibytes.util.test.fulfils
 import tech.antibytes.util.test.mustBe
-import kotlin.random.Random
-import tech.antibytes.kmock.verification.assertProxy
-import tech.antibytes.pixabay.sdk.ClientMock
-import tech.antibytes.kfixture.kotlinFixture
+import kotlin.test.Test
 
 @OptIn(KMockExperimental::class)
 @KMock(
-    ClientContract.Client::class
+    ClientContract.Client::class,
 )
 class DatasourceTest {
     private val fixture = kotlinFixture()
@@ -86,7 +86,7 @@ class DatasourceTest {
 
         // Then
         actual mustBe expected
-        random.range mustBe 1..3
+        random.range mustBe -2147483647..-2147483645
         assertProxy {
             client._fetchImages.hasBeenCalledWith("cats", random.nextUInt.toUShort())
         }

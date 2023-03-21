@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import java.util.Properties
 
 plugins {
+    application
     id("io.ktor.plugin") version "2.1.3"
     id(antibytesCatalog.plugins.kotlin.jvm.get().pluginId)
     // alias(antibytesCatalog.plugins.gradle.antibytes.kmpConfiguration)
@@ -18,9 +19,9 @@ kotlin {
     val hostOs = System.getProperty("os.name")
     val arch = System.getProperty("os.arch")
     val nativeTarget = when {
-        hostOs == "Mac OS X" && arch == "x86_64" -> macosX64()
-        hostOs == "Mac OS X" && arch == "aarch64" -> macosArm64()
-        hostOs == "Linux" -> linuxX64()
+        hostOs == "Mac OS X" && arch == "x86_64" -> macosX64("native")
+        hostOs == "Mac OS X" && arch == "aarch64" -> macosArm64("native")
+        hostOs == "Linux" -> linuxX64("native")
         // Other supported targets are listed here: https://ktor.io/docs/native-server.html#targets
         else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
     }
@@ -32,6 +33,8 @@ kotlin {
             }
         }
     }
+
+    jvm()
     sourceSets {
         all {
             languageSettings.apply {
@@ -41,10 +44,12 @@ kotlin {
         }
 
         val commonMain by getting {
+            kotlin.srcDir("build/generated/antibytes/main/kotlin")
             dependencies {
                 implementation(antibytesCatalog.common.kotlin.stdlib)
                 implementation(antibytesCatalog.common.ktor.server.core)
                 implementation(antibytesCatalog.common.ktor.server.cio)
+                implementation(antibytesCatalog.common.ktor.client.logging)
                 implementation(antibytesCatalog.common.ktor.server.contentNegotiation)
 
                 implementation(antibytesCatalog.common.ktor.serialization.json)
@@ -55,6 +60,7 @@ kotlin {
                 implementation(antibytesCatalog.common.koin.core)
                 implementation(libs.sdk)
                 implementation(libs.kotlinResult)
+                implementation(projects.shared)
             }
         }
         val commonTest by getting {
@@ -67,13 +73,20 @@ kotlin {
                 implementation(libs.kmock)
             }
         }
-    }
-}*/
 
+        val jvmTest by getting {
+            dependencies {
+                implementation(antibytesCatalog.jvm.test.kotlin.core)
+                implementation(antibytesCatalog.jvm.test.junit.core)
+            }
+        }
+    }
+}
+*/
 dependencies {
     implementation(antibytesCatalog.common.kotlin.stdlib)
     implementation(antibytesCatalog.common.ktor.server.core)
-    implementation(antibytesCatalog.common.ktor.client.logging)
+    implementation(antibytesCatalog.jvm.ktor.server.defaultHeaders)
     implementation(antibytesCatalog.common.ktor.server.cio)
     implementation(antibytesCatalog.common.ktor.server.contentNegotiation)
 
@@ -83,13 +96,13 @@ dependencies {
     implementation(antibytesCatalog.common.kotlinx.serialization.json)
 
     implementation(antibytesCatalog.common.koin.core)
-    implementation(libs.sdk)
     implementation(libs.kotlinResult)
     implementation(projects.shared)
 
     testImplementation(antibytesCatalog.common.test.kotlin.core)
     testImplementation(antibytesCatalog.common.test.kotlinx.coroutines)
     testImplementation(libs.testUtils.core)
+    testImplementation(antibytesCatalog.common.test.ktor.server.testHost)
     // testImplementation(libs.testUtils.annotations)
     testImplementation(libs.kfixture)
     testImplementation(libs.kmock)

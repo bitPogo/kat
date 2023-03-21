@@ -7,13 +7,12 @@
 package tech.antibytes.awesomecats.backend.pixabay.domain.usecase
 
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Test
 import tech.antibytes.awesomecats.backend.kmock
-import kotlin.test.assertEquals
+import tech.antibytes.awesomecats.common.entity.Cat
 import tech.antibytes.kmock.KMock
 import tech.antibytes.kmock.KMockExperimental
 import tech.antibytes.util.test.fulfils
-import tech.antibytes.awesomecats.domain.entity.Cat
+import kotlin.test.Test
 
 @OptIn(KMockExperimental::class)
 @KMock(

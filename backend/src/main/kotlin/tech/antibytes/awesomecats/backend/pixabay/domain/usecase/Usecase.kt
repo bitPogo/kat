@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import tech.antibytes.awesomecats.domain.entity.Cat
+import tech.antibytes.awesomecats.common.entity.Cat
 
 internal class Usecase(
     private val repository: RepositoryContract,

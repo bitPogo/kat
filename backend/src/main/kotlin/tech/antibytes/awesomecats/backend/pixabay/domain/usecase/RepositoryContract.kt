@@ -6,7 +6,7 @@
 
 package tech.antibytes.awesomecats.backend.pixabay.domain.usecase
 
-import tech.antibytes.awesomecats.domain.entity.Cat
+import tech.antibytes.awesomecats.common.entity.Cat
 
 interface RepositoryContract {
     suspend fun fetchCat(): Cat

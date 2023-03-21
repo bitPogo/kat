@@ -29,7 +29,7 @@ pluginManagement {
 }
 
 plugins {
-    id("tech.antibytes.gradle.dependency.settings") version "52dc3b1"
+    id("tech.antibytes.gradle.dependency.settings") version "f2c3d06"
 }
 
 includeBuild("setup")
@@ -37,7 +37,9 @@ includeBuild("setup")
 include(
     ":shared",
     ":backend",
-    ":frontend:shared",
+    ":frontend:shared-feature",
+    ":frontend:js",
+    ":frontend:coroutine-wrapper",
     ":frontend:example-android-application"
 )
 
