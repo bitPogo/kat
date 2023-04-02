@@ -42,7 +42,8 @@ include(
     ":frontend:coroutine-wrapper",
     ":frontend:android",
     ":frontend:js",
-    ":frontend:desktop"
+    ":frontend:desktop",
+    ":frontend:ios:compose"
 )
 
 buildCache {

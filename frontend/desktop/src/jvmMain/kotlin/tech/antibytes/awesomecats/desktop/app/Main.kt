@@ -35,7 +35,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.xml.sax.InputSource
+import tech.antibytes.awesomecats.common.CAT_HOST
 import tech.antibytes.awesomecats.shared.app.ui.App
+import tech.antibytes.awesomecats.shared.app.ui.theme.AwesomeCatsTheme
 import tech.antibytes.awesomecats.store.CatViewModel
 import tech.antibytes.pixabay.sdk.ClientContract
 
@@ -49,10 +51,10 @@ fun main() = singleWindowApplication(
         42,
         { CoroutineScope(Dispatchers.IO) },
         { CoroutineScope(Dispatchers.Default) },
-        "127.0.0.1",
+        CAT_HOST,
     )
 
-    MaterialTheme {
+    AwesomeCatsTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
             App(viewModel) { url ->
                 AsyncImage(

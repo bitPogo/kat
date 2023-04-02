@@ -14,6 +14,9 @@ kotlinResult = "05a4d20-customize-SNAPSHOT"
 
 sdk = "8b3897f"
 
+# https://github.com/qdsfdhvh/compose-imageloader/releases?page=1
+seikoImage = "1.2.2.1"
+
 [libraries]
 kfixture = { module = "tech.antibytes.kfixture:core", version.ref = "kfixture" }
 testUtils-core = { module = "tech.antibytes.test-utils-kmp:test-utils", version.ref = "testUtils" }
@@ -24,6 +27,7 @@ kmock = { module = "tech.antibytes.kmock:kmock", version.ref = "kmock" }
 gradle-kmock = { module = "tech.antibytes.kmock:kmock-gradle", version.ref = "kmock" }
 kotlinResult = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlinResult" }
 sdk = { module = "tech.antibytes.awesomecats:clientSDK", version.ref = "sdk" }
+seikoImage = { module = "io.github.qdsfdhvh:image-loader", version.ref = "seikoImage" }
 
 [plugins]
 kmock = { id = "tech.antibytes.kmock.kmock-gradle", version.ref = "kmock" }

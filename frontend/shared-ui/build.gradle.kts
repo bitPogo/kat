@@ -1,3 +1,6 @@
+import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
+import tech.antibytes.gradle.configuration.sourcesets.iosx
+
 /*
  * Copyright (c) 2023 Matthias Geisler (bitPogo) / All rights reserved.
  *
@@ -16,6 +19,8 @@ val packageName = "tech.antibytes.awesomecats.shared.app"
 kotlin {
     android()
     jvm()
+    iosx()
+    ensureAppleDeviceCompatibility()
 
     sourceSets {
         val commonMain by getting {
@@ -24,8 +29,6 @@ kotlin {
                 api(compose.foundation)
                 api(compose.material)
                 api(compose.ui)
-                // Needed only for preview.
-                api(compose.preview)
 
                 api(projects.frontend.sharedFeature)
             }
@@ -43,8 +46,17 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
+                // Needed only for preview.
+                api(compose.preview)
                 api(antibytesCatalog.android.ktx.core)
                 api(antibytesCatalog.android.appCompact.core)
+            }
+        }
+
+        val jvmMain by getting {
+            dependencies {
+                // Needed only for preview.
+                api(compose.preview)
             }
         }
     }
