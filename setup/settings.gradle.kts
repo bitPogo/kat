@@ -24,7 +24,7 @@ pluginManagement {
 }
 
 plugins {
-    id("tech.antibytes.gradle.dependency.settings") version "f2c3d06"
+    id("tech.antibytes.gradle.dependency.settings") version "199297a"
 }
 
 dependencyResolutionManagement {

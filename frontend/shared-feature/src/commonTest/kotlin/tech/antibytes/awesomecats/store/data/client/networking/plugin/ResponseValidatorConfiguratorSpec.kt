@@ -12,10 +12,10 @@ import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respondBadRequest
 import io.ktor.client.plugins.HttpCallValidator
 import io.ktor.client.request.request
-import tech.antibytes.awesomecats.viewmodel.kmock
 import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
+import tech.antibytes.awesomecats.viewmodel.kmock
 import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.kotlinFixture
 import tech.antibytes.kmock.KMock

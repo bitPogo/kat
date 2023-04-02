@@ -8,25 +8,12 @@ package tech.antibytes.awesomecats.android.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModel
-import tech.antibytes.awesomecats.android.app.theme.AwesomeCatsTheme
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
-import tech.antibytes.awesomecats.shared.app.ui.App
-import tech.antibytes.awesomecats.shared.app.ui.ViewModelContract
-import tech.antibytes.awesomecats.store.CatState
-import tech.antibytes.awesomecats.store.CatStore
-import tech.antibytes.awesomecats.store.CatStoreContract
-import tech.antibytes.awesomecats.store.model.FrontendCat
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.height
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -34,20 +21,23 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.size.Scale
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import tech.antibytes.awesomecats.shared.app.ui.App
+import tech.antibytes.awesomecats.shared.app.ui.theme.AwesomeCatsTheme
+import tech.antibytes.awesomecats.store.CatViewModel
 import tech.antibytes.pixabay.sdk.ClientContract
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel = CatViewModel(
-            CatStore.getInstance(
-                Logger,
-                { true },
-                42,
-                { CoroutineScope(Dispatchers.IO) },
-                { CoroutineScope(Dispatchers.Default) },
-                "10.0.2.2"
-            )
+        val viewModel = CatViewModel.getInstance(
+            Logger,
+            { true },
+            42,
+            { CoroutineScope(Dispatchers.IO) },
+            { CoroutineScope(Dispatchers.Default) },
+            "10.0.2.2",
         )
 
         setContent {
@@ -90,30 +80,4 @@ private object Logger : ClientContract.Logger {
     override fun warn(message: String) {
         println(message)
     }
-}
-
-val defaultCat = FrontendCat(
-    "https://i.ytimg.com/vi/esxNJjOoTOQ/maxresdefault.jpg",
-    0
-)
-
-class CatViewModel(
-    private val store: CatStoreContract
-) : ViewModelContract, ViewModel() {
-    private val _cat: MutableStateFlow<FrontendCat> = MutableStateFlow(
-        defaultCat
-    )
-    override val cat: StateFlow<FrontendCat> = _cat
-
-    init {
-        store.catState.subscribe { state -> evaluateState(state) }
-    }
-
-    private fun evaluateState(state: CatState) {
-        if (state is CatState.Accepted) {
-            _cat.update { state.value.copy() }
-        }
-    }
-
-    override fun requestCat() = store.requestACat()
 }

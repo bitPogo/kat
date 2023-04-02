@@ -82,8 +82,8 @@ kotlin {
                 implementation(antibytesCatalog.common.kotlinx.serialization.core)
                 implementation(antibytesCatalog.common.kotlinx.serialization.json)
 
-                implementation(projects.shared)
-                implementation(projects.frontend.coroutineWrapper)
+                api(projects.shared)
+                api(projects.frontend.coroutineWrapper)
             }
         }
         val commonTest by getting {
@@ -107,6 +107,9 @@ kotlin {
                 implementation(antibytesCatalog.jvm.kotlin.stdlib.jdk8)
                 implementation(antibytesCatalog.android.ktor.client)
                 implementation(antibytesCatalog.jvm.ktor.client.okhttp)
+
+                implementation(antibytesCatalog.android.ktx.viewmodel.core)
+                implementation(antibytesCatalog.android.ktx.viewmodel.compose)
             }
         }
 

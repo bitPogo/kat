@@ -9,10 +9,10 @@ package tech.antibytes.awesomecats.store.data.client
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.statement.HttpStatement
 import io.ktor.http.HttpStatusCode
-import tech.antibytes.awesomecats.store.data.RepositoryContract
 import kotlin.js.JsName
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import tech.antibytes.awesomecats.store.data.RepositoryContract
 import tech.antibytes.awesomecats.store.data.client.error.CatClientError
 import tech.antibytes.awesomecats.store.data.client.fixture.StringAlphaGenerator
 import tech.antibytes.awesomecats.store.data.client.networking.NetworkingContract

@@ -85,7 +85,7 @@ internal class CatClient constructor(
 
         private fun initRequestBuilder(
             logger: ClientContract.Logger,
-            host: String
+            host: String,
         ): NetworkingContract.RequestBuilderFactory {
             return RequestBuilder.Factory(
                 client = HttpClient().config {
@@ -105,12 +105,12 @@ internal class CatClient constructor(
         override fun getInstance(
             logger: ClientContract.Logger,
             connection: ClientContract.ConnectivityManager,
-            host: String
+            host: String,
         ): RepositoryContract.Client {
             return CatClient(
                 requestBuilder = initRequestBuilder(
                     logger,
-                    host
+                    host,
                 ),
                 connectivityManager = connection,
             )

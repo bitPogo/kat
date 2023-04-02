@@ -7,12 +7,12 @@
 package tech.antibytes.awesomecats.js.app.ui.atom
 
 import csstype.ClassName
-import tech.antibytes.awesomecats.js.app.ui.react.render
 import react.Component
 import react.Props
 import react.ReactNode
 import react.State
 import react.dom.html.ReactHTML.div
+import tech.antibytes.awesomecats.js.app.ui.react.render
 
 class Divider(
     private val className: String,

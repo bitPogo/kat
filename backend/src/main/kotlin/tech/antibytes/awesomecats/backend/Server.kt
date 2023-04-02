@@ -12,7 +12,6 @@ import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.call
 import io.ktor.server.application.install
 import io.ktor.server.cio.CIO
-import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.plugins.defaultheaders.DefaultHeaders
 import io.ktor.server.response.respondText
@@ -48,7 +47,6 @@ fun Application.addCORS() {
 
 private fun Route.routeRoot() {
     get("/") {
-
         resolvePlainCat()
     }
 }

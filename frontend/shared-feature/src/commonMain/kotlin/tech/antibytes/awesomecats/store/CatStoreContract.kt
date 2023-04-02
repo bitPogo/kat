@@ -26,7 +26,6 @@ interface CatStoreContract {
     fun requestACat()
 }
 
-
 interface CatStoreFactoryContract {
     fun getInstance(
         logger: ClientContract.Logger,

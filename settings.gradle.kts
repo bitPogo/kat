@@ -29,7 +29,7 @@ pluginManagement {
 }
 
 plugins {
-    id("tech.antibytes.gradle.dependency.settings") version "f2c3d06"
+    id("tech.antibytes.gradle.dependency.settings") version "199297a"
 }
 
 includeBuild("setup")
@@ -42,6 +42,7 @@ include(
     ":frontend:coroutine-wrapper",
     ":frontend:android",
     ":frontend:js",
+    ":frontend:desktop"
 )
 
 buildCache {

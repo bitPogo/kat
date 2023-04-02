@@ -10,7 +10,7 @@ import tech.antibytes.pixabay.sdk.ClientContract
 
 class Logger(
     private val stdout: Function1<String, Unit>,
-    private val stderr: Function1<String, Unit>
+    private val stderr: Function1<String, Unit>,
 ) : ClientContract.Logger {
     override fun info(message: String) = stdout.invoke("INFO: $message")
     override fun log(message: String) = stdout.invoke("LOG: $message")

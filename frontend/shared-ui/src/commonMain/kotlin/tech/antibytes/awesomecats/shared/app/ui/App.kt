@@ -8,9 +8,10 @@ package tech.antibytes.awesomecats.shared.app.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.material.Text
+import tech.antibytes.awesomecats.store.ViewModelContract
 
 @Composable
 fun App(
@@ -23,7 +24,7 @@ fun App(
         Text("Purr Level: ${cat.value.purrLevel}")
         image(cat.value.url)
         Button(
-            onClick = { viewModel.requestCat() }
+            onClick = { viewModel.requestCat() },
         ) {
             Text("Get a new Cat")
         }

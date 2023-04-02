@@ -7,7 +7,7 @@
 import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
 import tech.antibytes.gradle.configuration.sourcesets.setupAndroidTest
 import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
-import tech.antibytes.gradle.configuration.sourcesets.nativeCoroutine
+import tech.antibytes.gradle.configuration.sourcesets.appleWithLegacy
 
 plugins {
     alias(antibytesCatalog.plugins.gradle.antibytes.kmpConfiguration)
@@ -29,10 +29,6 @@ android {
             isIncludeAndroidResources = true
         }
     }
-}
-
-kmock {
-    rootPackage = projectPackage
 }
 
 kotlin {
@@ -61,7 +57,8 @@ kotlin {
         }
     }
 
-    nativeCoroutine()
+    appleWithLegacy()
+    linuxX64()
     ensureAppleDeviceCompatibility()
 
     sourceSets {
@@ -136,6 +133,10 @@ kotlin {
             }
         }
     }
+}
+
+kmock {
+    rootPackage = projectPackage
 }
 
 tasks.withType(Test::class.java) {

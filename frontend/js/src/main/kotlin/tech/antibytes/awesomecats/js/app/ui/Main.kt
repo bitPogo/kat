@@ -8,9 +8,6 @@ package tech.antibytes.awesomecats.js.app.ui
 
 import browser.document
 import kotlinx.coroutines.CoroutineScope
-import tech.antibytes.awesomecats.js.app.ui.atom.Divider
-import tech.antibytes.awesomecats.js.app.ui.atom.SimpleButton
-import tech.antibytes.awesomecats.js.app.ui.atom.SimpleText
 import kotlinx.coroutines.Dispatchers
 import react.FC
 import react.Props
@@ -19,7 +16,10 @@ import react.create
 import react.dom.client.createRoot
 import react.dom.html.ReactHTML.div
 import react.useState
+import tech.antibytes.awesomecats.js.app.ui.atom.Divider
+import tech.antibytes.awesomecats.js.app.ui.atom.SimpleButton
 import tech.antibytes.awesomecats.js.app.ui.atom.SimpleImage
+import tech.antibytes.awesomecats.js.app.ui.atom.SimpleText
 import tech.antibytes.awesomecats.store.CatState
 import tech.antibytes.awesomecats.store.CatStore
 import tech.antibytes.pixabay.sdk.ClientContract
@@ -31,16 +31,15 @@ external interface AppState : State {
 
 data class AppStateContainer(
     override val purrLevel: String,
-    override val url: String
+    override val url: String,
 ) : AppState
-
 
 val store = CatStore.getInstance(
     Logger,
     { true },
     42,
     { CoroutineScope(Dispatchers.Default) },
-    { CoroutineScope(Dispatchers.Default) }
+    { CoroutineScope(Dispatchers.Default) },
 )
 
 /*
@@ -107,7 +106,7 @@ val rootComponent = FC<Props> {
     var appState by useState {
         AppStateContainer(
             "0",
-            "https://i.ytimg.com/vi/esxNJjOoTOQ/maxresdefault.jpg"
+            "https://i.ytimg.com/vi/esxNJjOoTOQ/maxresdefault.jpg",
         )
     }
 
@@ -121,7 +120,7 @@ val rootComponent = FC<Props> {
                 if (it is CatState.Accepted) {
                     appState = AppStateContainer(
                         it.value.purrLevel.toString(),
-                        it.value.url
+                        it.value.url,
                     )
                 }
             }

@@ -6,13 +6,13 @@
 
 package tech.antibytes.awesomecats.backend.pixabay.domain.usecase
 
+import kotlin.test.Test
 import kotlinx.coroutines.test.runTest
 import tech.antibytes.awesomecats.backend.kmock
 import tech.antibytes.awesomecats.common.entity.Cat
 import tech.antibytes.kmock.KMock
 import tech.antibytes.kmock.KMockExperimental
 import tech.antibytes.util.test.fulfils
-import kotlin.test.Test
 
 @OptIn(KMockExperimental::class)
 @KMock(

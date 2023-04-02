@@ -6,6 +6,9 @@
 
 package tech.antibytes.awesomecats.store
 
+import kotlin.js.JsName
+import kotlin.test.BeforeTest
+import kotlin.test.Test
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
@@ -31,9 +34,6 @@ import tech.antibytes.util.test.sameAs
 import tech.antibytes.wrapper.coroutine.wrapper.CoroutineWrapperContract.CoroutineScopeDispatcher
 import tech.antibytes.wrapper.coroutine.wrapper.CoroutineWrapperContract.SharedFlowWrapper
 import tech.antibytes.wrapper.coroutine.wrapper.SharedFlowWrapperMock
-import kotlin.js.JsName
-import kotlin.test.BeforeTest
-import kotlin.test.Test
 
 @OptIn(KMockExperimental::class)
 @KMock(
@@ -63,7 +63,7 @@ class CatStoreSpec {
         // Given
         val expected = FrontendCat(
             url = "",
-            purrLevel = fixture.fixture()
+            purrLevel = fixture.fixture(),
         )
 
         val result = Channel<CatState>(
@@ -121,7 +121,7 @@ class CatStoreSpec {
         // Given
         val expected = FrontendCat(
             url = fixture.fixture(),
-            purrLevel = fixture.fixture()
+            purrLevel = fixture.fixture(),
         )
 
         val result = Channel<CatState>(

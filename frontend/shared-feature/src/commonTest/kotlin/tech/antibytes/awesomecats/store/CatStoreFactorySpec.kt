@@ -6,6 +6,8 @@
 
 package tech.antibytes.awesomecats.store
 
+import kotlin.js.JsName
+import kotlin.test.Test
 import tech.antibytes.awesomecats.viewmodel.kmock
 import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.kotlinFixture
@@ -14,8 +16,6 @@ import tech.antibytes.kmock.KMockExperimental
 import tech.antibytes.pixabay.sdk.ClientContract
 import tech.antibytes.util.test.fulfils
 import tech.antibytes.wrapper.coroutine.wrapper.CoroutineWrapperContract
-import kotlin.js.JsName
-import kotlin.test.Test
 
 @OptIn(KMockExperimental::class)
 @KMock(
@@ -35,7 +35,7 @@ class CatStoreFactorySpec {
             kmock(),
             fixture.fixture(),
             kmock(),
-            kmock()
+            kmock(),
         )
 
         // Then

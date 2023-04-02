@@ -9,7 +9,6 @@ package tech.antibytes.awesomecats.store.data
 import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.test.Test
-import kotlin.test.assertFailsWith
 import kotlinx.coroutines.test.runTest
 import tech.antibytes.awesomecats.store.model.FrontendCat
 import tech.antibytes.awesomecats.viewmodel.kmock
@@ -48,7 +47,7 @@ class RepositorySpec {
         // Then
         actual mustBe FrontendCat(
             "https://i.ytimg.com/vi/esxNJjOoTOQ/maxresdefault.jpg",
-            0
+            0,
         )
     }
 

@@ -10,13 +10,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.core.KoinApplication
-import tech.antibytes.awesomecats.common.CAT_HOST
 import tech.antibytes.awesomecats.store.di.initKoin
 import tech.antibytes.pixabay.sdk.ClientContract
 import tech.antibytes.wrapper.coroutine.wrapper.CoroutineWrapperContract
 
 class CatStore internal constructor(
-    koin: KoinApplication
+    koin: KoinApplication,
 ) : CatStoreContract {
     override val catState: CoroutineWrapperContract.SharedFlowWrapper<CatState> by koin.koin.inject()
     private val catPropagator: MutableStateFlow<CatState> by koin.koin.inject()
@@ -61,7 +60,7 @@ class CatStore internal constructor(
             seed: Int,
             producerScope: CoroutineWrapperContract.CoroutineScopeDispatcher,
             consumerScope: CoroutineWrapperContract.CoroutineScopeDispatcher,
-            host: String
+            host: String,
         ): CatStoreContract {
             return CatStore(
                 initKoin(
@@ -70,8 +69,8 @@ class CatStore internal constructor(
                     seed,
                     producerScope,
                     consumerScope,
-                    host
-                )
+                    host,
+                ),
             )
         }
     }

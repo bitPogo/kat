@@ -6,13 +6,13 @@
 
 package tech.antibytes.awesomecats.common
 
+import kotlin.js.JsName
+import kotlin.test.Test
 import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.kotlinFixture
 import tech.antibytes.pixabay.sdk.ClientContract
 import tech.antibytes.util.test.fulfils
 import tech.antibytes.util.test.mustBe
-import kotlin.js.JsName
-import kotlin.test.Test
 
 class LoggerTest {
     private val fixture = kotlinFixture()
@@ -84,7 +84,7 @@ class LoggerTest {
 
         // When
         Logger(stderr = lambda, stdout = { throw RuntimeException() })
-           .error(exception, input)
+            .error(exception, input)
 
         // Then
         capturedInput.first() mustBe "ERROR: $input"

@@ -7,10 +7,10 @@
 package tech.antibytes.awesomecats.store.data.client
 
 import kotlin.js.JsName
+import kotlin.test.Ignore
 import kotlin.test.Test
 import tech.antibytes.util.test.coroutine.runBlockingTestWithTimeout
 import tech.antibytes.util.test.isNot
-import kotlin.test.Ignore
 
 @Ignore
 class E2E {

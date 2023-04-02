@@ -6,6 +6,7 @@
 
 package tech.antibytes.awesomecats.store.di
 
+import kotlin.random.Random
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.koin.core.KoinApplication
 import org.koin.core.module.Module
@@ -21,14 +22,13 @@ import tech.antibytes.awesomecats.store.domain.UseCase
 import tech.antibytes.pixabay.sdk.ClientContract
 import tech.antibytes.wrapper.coroutine.wrapper.CoroutineWrapperContract.CoroutineScopeDispatcher
 import tech.antibytes.wrapper.coroutine.wrapper.SharedFlowWrapper
-import kotlin.random.Random
 
 private fun resolveCatStoreParameterModule(
     producerScope: CoroutineScopeDispatcher,
     logger: ClientContract.Logger,
     connection: ClientContract.ConnectivityManager,
     seed: Int,
-    host: String
+    host: String,
 ): Module {
     return module {
         factory { producerScope }
@@ -75,7 +75,7 @@ internal fun initKoin(
     seed: Int,
     producerScope: CoroutineScopeDispatcher,
     consumerScope: CoroutineScopeDispatcher,
-    host: String = HOST
+    host: String = HOST,
 ): KoinApplication {
     return koinApplication {
         modules(

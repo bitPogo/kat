@@ -6,7 +6,6 @@
 
 package tech.antibytes.awesomecats.js.app.ui.atom
 
-import tech.antibytes.awesomecats.js.app.ui.react.render
 import react.Component
 import react.Key
 import react.Props
@@ -14,6 +13,7 @@ import react.ReactNode
 import react.State
 import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.p
+import tech.antibytes.awesomecats.js.app.ui.react.render
 
 external interface SimpleTextProps : Props {
     var text: String

@@ -9,6 +9,7 @@ package tech.antibytes.awesomecats.backend.pixabay.data.repository
 import com.github.michaelbull.result.Ok
 import kotlin.properties.Delegates
 import kotlin.random.Random
+import kotlin.test.Test
 import kotlinx.coroutines.test.runTest
 import tech.antibytes.awesomecats.backend.kmock
 import tech.antibytes.awesomecats.backend.pixabay.domain.usecase.RepositoryContract
@@ -21,7 +22,6 @@ import tech.antibytes.pixabay.sdk.model.PixabayItem
 import tech.antibytes.pixabay.sdk.model.PixabayResponse
 import tech.antibytes.util.test.fulfils
 import tech.antibytes.util.test.mustBe
-import kotlin.test.Test
 
 @OptIn(KMockExperimental::class)
 @KMock(

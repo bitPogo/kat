@@ -6,7 +6,6 @@
 
 package tech.antibytes.awesomecats.js.app.ui.atom
 
-import tech.antibytes.awesomecats.js.app.ui.react.render
 import org.w3c.dom.Element
 import react.Component
 import react.Props
@@ -16,6 +15,7 @@ import react.dom.events.MouseEvent
 import react.dom.events.NativeMouseEvent
 import react.dom.html.ReactHTML.button
 import react.dom.html.ReactHTML.div
+import tech.antibytes.awesomecats.js.app.ui.react.render
 
 class SimpleButton(
     private val label: String,

@@ -7,6 +7,7 @@
 package tech.antibytes.awesomecats.store.di
 
 import kotlin.js.JsName
+import kotlin.random.Random
 import kotlin.test.Test
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.TestScope
@@ -21,9 +22,8 @@ import tech.antibytes.kmock.KMock
 import tech.antibytes.kmock.KMockExperimental
 import tech.antibytes.pixabay.sdk.ClientContract
 import tech.antibytes.util.test.isNot
-import tech.antibytes.wrapper.coroutine.wrapper.CoroutineWrapperContract.SharedFlowWrapper
 import tech.antibytes.wrapper.coroutine.wrapper.CoroutineWrapperContract.CoroutineScopeDispatcher
-import kotlin.random.Random
+import tech.antibytes.wrapper.coroutine.wrapper.CoroutineWrapperContract.SharedFlowWrapper
 
 @OptIn(KMockExperimental::class)
 @KMock(

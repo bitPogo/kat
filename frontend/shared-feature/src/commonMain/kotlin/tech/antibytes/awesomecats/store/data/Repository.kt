@@ -29,7 +29,7 @@ internal class Repository(
         } catch (_: Throwable) {
             FrontendCat(
                 "https://i.ytimg.com/vi/esxNJjOoTOQ/maxresdefault.jpg",
-                0
+                0,
             )
         }
     }

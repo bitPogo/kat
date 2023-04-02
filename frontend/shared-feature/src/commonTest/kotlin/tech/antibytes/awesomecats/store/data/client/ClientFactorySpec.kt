@@ -6,10 +6,10 @@
 
 package tech.antibytes.awesomecats.store.data.client
 
-import tech.antibytes.awesomecats.store.data.RepositoryContract
-import tech.antibytes.awesomecats.viewmodel.kmock
 import kotlin.js.JsName
 import kotlin.test.Test
+import tech.antibytes.awesomecats.store.data.RepositoryContract
+import tech.antibytes.awesomecats.viewmodel.kmock
 import tech.antibytes.kmock.KMock
 import tech.antibytes.kmock.KMockExperimental
 import tech.antibytes.pixabay.sdk.ClientContract

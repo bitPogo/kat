@@ -10,9 +10,9 @@ testUtils =  "f384302"
 ## [KMock](https://github.com/bitPogo/kmock)
 kmock = "0.3.0-rc05"
 
-kotlinResult = "1.1.16"
+kotlinResult = "05a4d20-customize-SNAPSHOT"
 
-sdk = "7ee3ff1"
+sdk = "8b3897f"
 
 [libraries]
 kfixture = { module = "tech.antibytes.kfixture:core", version.ref = "kfixture" }

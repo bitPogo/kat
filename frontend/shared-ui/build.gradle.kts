@@ -8,6 +8,7 @@ plugins {
     alias(antibytesCatalog.plugins.gradle.antibytes.kmpConfiguration)
     alias(antibytesCatalog.plugins.gradle.antibytes.androidLibraryConfiguration)
     alias(antibytesCatalog.plugins.jetbrains.compose)
+    alias(libs.plugins.kmock)
 }
 
 val packageName = "tech.antibytes.awesomecats.shared.app"
@@ -25,9 +26,21 @@ kotlin {
                 api(compose.ui)
                 // Needed only for preview.
                 api(compose.preview)
+
                 api(projects.frontend.sharedFeature)
             }
         }
+        val commonTest by getting {
+            dependencies {
+                implementation(antibytesCatalog.common.test.kotlin.core)
+
+                implementation(libs.testUtils.core)
+                implementation(libs.testUtils.annotations)
+                implementation(libs.kfixture)
+                implementation(libs.kmock)
+            }
+        }
+
         val androidMain by getting {
             dependencies {
                 api(antibytesCatalog.android.ktx.core)
@@ -37,6 +50,12 @@ kotlin {
     }
 }
 
+kmock {
+    rootPackage = packageName
+}
+
 android {
     namespace = packageName
 }
+
+

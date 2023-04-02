@@ -6,9 +6,9 @@
 
 package tech.antibytes.awesomecats.backend.di
 
+import kotlin.test.Test
 import tech.antibytes.awesomecats.backend.pixabay.domain.usecase.UsecaseContract
 import tech.antibytes.util.test.isNot
-import kotlin.test.Test
 
 class KoinTest {
     @Test
