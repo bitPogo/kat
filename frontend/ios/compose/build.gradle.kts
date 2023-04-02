@@ -17,24 +17,26 @@ plugins {
     alias(antibytesCatalog.plugins.jetbrains.compose)
 
     alias(libs.plugins.kmock)
+    kotlin("native.cocoapods")
 }
 
 val packageName = "tech.antibytes.awesomecats.ios.app"
 
 kotlin {
-    iosx("uikit") {
-        binaries {
-            executable {
-                entryPoint = "main"
-                freeCompilerArgs += listOf(
-                    "-linker-option", "-framework", "-linker-option", "Metal",
-                    "-linker-option", "-framework", "-linker-option", "CoreText",
-                    "-linker-option", "-framework", "-linker-option", "CoreGraphics"
-                )
-            }
+    iosx()
+    ensureAppleDeviceCompatibility()
+
+    cocoapods {
+        summary = "iOS Cat Screens"
+        homepage = "https://www.example.com"
+        version = "1.0"
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../swift/AwesomeCats/Podfile")
+        framework {
+            baseName = "compose"
+            isStatic = true
         }
     }
-    ensureAppleDeviceCompatibility()
 
     sourceSets {
         val commonMain by getting {
@@ -67,40 +69,6 @@ kmock {
     rootPackage = packageName
 }
 
-compose.experimental {
-    web.application {}
-    uikit.application {
-        bundleIdPrefix = "packageName"
-        projectName = "AwesomeCats"
-        deployConfigurations {
-            simulator("IPhone13") {
-                device = IOSDevices.IPHONE_13
-            }
-            simulator("IPad") {
-                device = IOSDevices.IPAD_MINI_6th_Gen
-            }
-            connectedDevice("Device") {
-                teamId="**"
-            }
-        }
-    }
-}
-
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
-}
-
-kotlin {
-    targets.withType<KotlinNativeTarget> {
-        binaries.all {
-            freeCompilerArgs += "-Xdisable-phases=VerifyBitcode"
-        }
-    }
-}
-
-// TODO: remove when https://youtrack.jetbrains.com/issue/KT-50778 fixed
-project.tasks.withType(KotlinJsCompile::class.java).configureEach {
-    kotlinOptions.freeCompilerArgs += listOf(
-        "-Xir-dce-runtime-diagnostic=log"
-    )
 }
