@@ -1,5 +1,0 @@
-target 'AwesomeCats' do
-  use_frameworks!
-  platform :ios, '14.2'
-  pod 'compose', :path => '../../compose'
-end

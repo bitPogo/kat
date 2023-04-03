@@ -31,7 +31,7 @@ kotlin {
         homepage = "https://www.example.com"
         version = "1.0"
         ios.deploymentTarget = "14.1"
-        podfile = project.file("../swift/AwesomeCats/Podfile")
+        podfile = project.file("../swift/Podfile")
         framework {
             baseName = "compose"
             isStatic = true
@@ -72,3 +72,4 @@ kmock {
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
 }
+

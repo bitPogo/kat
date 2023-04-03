@@ -10,6 +10,7 @@ import tech.antibytes.gradle.project.config.repositories.Repositories.projectRep
 import java.util.Properties
 
 plugins {
+    `kotlin-dsl`
     id("tech.antibytes.gradle.setup")
 
     alias(antibytesCatalog.plugins.gradle.antibytes.dependencyHelper)
@@ -40,6 +41,13 @@ allprojects {
             url = uri("https://oss.sonatype.org/content/repositories/snapshots")
         }
         addCustomRepositories(projectRepositories)
+    }
+
+    extensions.findByType(JavaPluginExtension::class.java)?.apply {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(11))
+            vendor.set(JvmVendorSpec.ADOPTIUM)
+        }
     }
 
     ensureKotlinVersion()

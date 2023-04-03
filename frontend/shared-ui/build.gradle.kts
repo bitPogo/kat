@@ -69,5 +69,3 @@ kmock {
 android {
     namespace = packageName
 }
-
-

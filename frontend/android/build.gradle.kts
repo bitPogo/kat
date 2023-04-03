@@ -113,8 +113,3 @@ dependencies {
     androidTestImplementation(libs.kfixture)
     androidTestImplementation(libs.kmock)
 }
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
