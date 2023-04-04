@@ -35,6 +35,7 @@ plugins {
 includeBuild("setup")
 
 include(
+    ":rust:bigint",
     ":shared",
     ":backend",
     ":frontend:shared-feature",

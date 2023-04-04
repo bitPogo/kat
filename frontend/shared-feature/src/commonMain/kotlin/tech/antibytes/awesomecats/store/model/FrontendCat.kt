@@ -8,5 +8,5 @@ package tech.antibytes.awesomecats.store.model
 
 data class FrontendCat(
     val url: String,
-    val purrLevel: Int,
+    val purrLevel: String,
 )

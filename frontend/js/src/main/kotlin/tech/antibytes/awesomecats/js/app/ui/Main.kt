@@ -118,6 +118,8 @@ val rootComponent = FC<Props> {
             requestCat()
             store.catState.subscribe {
                 if (it is CatState.Accepted) {
+                    console.log(it.value.purrLevel)
+
                     appState = AppStateContainer(
                         it.value.purrLevel.toString(),
                         it.value.url,

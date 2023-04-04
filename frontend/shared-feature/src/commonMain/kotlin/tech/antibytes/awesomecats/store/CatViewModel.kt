@@ -16,7 +16,7 @@ import tech.antibytes.wrapper.coroutine.wrapper.CoroutineWrapperContract
 
 val defaultCat = FrontendCat(
     "https://i.ytimg.com/vi/esxNJjOoTOQ/maxresdefault.jpg",
-    0,
+    "0",
 )
 
 class CatViewModel internal constructor(

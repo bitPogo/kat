@@ -23,6 +23,7 @@ import coil.request.ImageRequest
 import coil.size.Scale
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import tech.antibytes.awesomecats.common.CAT_HOST
 import tech.antibytes.awesomecats.shared.app.ui.App
 import tech.antibytes.awesomecats.shared.app.ui.theme.AwesomeCatsTheme
 import tech.antibytes.awesomecats.store.CatViewModel

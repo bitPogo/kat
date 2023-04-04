@@ -6,4 +6,4 @@
 
 package tech.antibytes.awesomecats.common
 
-const val CAT_PORT = 8085
+const val CAT_PORT = 8081

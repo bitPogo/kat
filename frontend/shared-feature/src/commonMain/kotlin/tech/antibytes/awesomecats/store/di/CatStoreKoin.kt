@@ -14,8 +14,10 @@ import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 import tech.antibytes.awesomecats.store.CatState
 import tech.antibytes.awesomecats.store.UseCaseContract
+import tech.antibytes.awesomecats.store.data.PurrResolver
 import tech.antibytes.awesomecats.store.data.Repository
 import tech.antibytes.awesomecats.store.data.RepositoryContract.HOST
+import tech.antibytes.awesomecats.store.data.RepositoryContract.PurrResolver as PurrResolverContract
 import tech.antibytes.awesomecats.store.data.client.CatClient
 import tech.antibytes.awesomecats.store.domain.RepositoryContract
 import tech.antibytes.awesomecats.store.domain.UseCase
@@ -37,8 +39,14 @@ private fun resolveCatStoreParameterModule(
     }
 }
 
+internal expect fun resolvePlatformSpecific(): Module
+
 private fun resolveRepositories(): Module {
     return module {
+        single<PurrResolverContract> {
+            PurrResolver(get(), get())
+        }
+
         single<RepositoryContract> {
             Repository(get(), get())
         }
@@ -89,6 +97,7 @@ internal fun initKoin(
             resolveRepositories(),
             resolveUseCase(),
             resolveCatStoreModule(consumerScope),
+            resolvePlatformSpecific(),
         )
     }
 }

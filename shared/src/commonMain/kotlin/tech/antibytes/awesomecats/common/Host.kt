@@ -6,4 +6,4 @@
 
 package tech.antibytes.awesomecats.common
 
-const val CAT_HOST = "192.168.2.113"//"127.0.0.1"
+const val CAT_HOST = "127.0.0.1"

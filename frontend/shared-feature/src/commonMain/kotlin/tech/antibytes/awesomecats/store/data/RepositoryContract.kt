@@ -34,6 +34,13 @@ internal object RepositoryContract {
         ): Client
     }
 
+    interface PurrResolver {
+        /**
+         * Resolves the purr level
+         */
+        suspend fun resolve(): String
+    }
+
     internal val ENDPOINT = listOf("/")
     internal const val HOST = CAT_HOST
     internal const val PORT = CAT_PORT.toString()

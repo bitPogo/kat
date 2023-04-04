@@ -79,6 +79,8 @@ kotlin {
                 implementation(antibytesCatalog.common.ktor.client.json)
                 implementation(antibytesCatalog.common.ktor.serialization.json)
 
+                implementation(projects.rust.bigint)
+
                 implementation(antibytesCatalog.common.kotlinx.serialization.core)
                 implementation(antibytesCatalog.common.kotlinx.serialization.json)
 
@@ -142,6 +144,13 @@ kotlin {
                 implementation(antibytesCatalog.js.kotlin.stdlib)
                 implementation(antibytesCatalog.js.kotlinx.nodeJs)
                 implementation(antibytesCatalog.js.ktor.client.core)
+                implementation(
+                    npm(
+                        "bigint_arithmetic",
+                        File("${rootProject.projectDir.absolutePath.trimEnd('/')}/rust/bigint/wasm")
+                    )
+                )
+                implementation(projects.rust.bigint)
             }
         }
 
@@ -162,6 +171,12 @@ kotlin {
 kmock {
     rootPackage = projectPackage
     allowInterfaces = true
+    useBuildInProxiesOn = setOf(
+        "io.bitpogo.krump.bignumber.BigUIntegerContract.BigUInteger"
+    )
+    preventResolvingOfAliases = setOf(
+        "tech.antibytes.awesomecats.store.data.PurrMultiplier"
+    )
 }
 
 tasks.withType(Test::class.java) {

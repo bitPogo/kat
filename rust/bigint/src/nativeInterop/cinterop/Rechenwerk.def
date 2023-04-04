@@ -1,0 +1,14 @@
+package = io.bitpogo.krump.rechenwerk
+
+headers = libbigint_arithmetic.h
+headerFilter = *
+
+staticLibraries = libbigint_arithmetic.a
+libraryPaths.ios_x64 = /Users/bitpogo/projects/antibytes/randomcat/rust/bigint/rsrc/target
+libraryPaths.ios_arm64 = /Users/bitpogo/projects/antibytes/randomcat/rust/bigint/rsrc/target
+libraryPaths.ios = /Users/bitpogo/projects/antibytes/randomcat/rust/bigint/rsrc/target
+
+linkerOpts = -L/usr/lib/swift
+linkerOpts.ios = -ios_simulator_version_min 14.0.0 -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/
+linkerOpts.ios_x64 = -ios_simulator_version_min 14.0.0 -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/
+linkerOpts.ios_arm64 = -iphoneos_version_min 14.0.0 -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/

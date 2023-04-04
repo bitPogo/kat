@@ -17,6 +17,11 @@ sdk = "8b3897f"
 # https://github.com/qdsfdhvh/compose-imageloader/releases?page=1
 seikoImage = "1.2.2.1"
 
+## [native library loader](https://search.maven.org/artifact/org.scijava/native-lib-loader/2.4.0/jar)
+nativeBundler = "2.4.0"
+## [Mozilla Rust Gradle](https://github.com/mozilla/rust-android-gradle/releases)
+rust = "0.9.3"
+
 [libraries]
 kfixture = { module = "tech.antibytes.kfixture:core", version.ref = "kfixture" }
 testUtils-core = { module = "tech.antibytes.test-utils-kmp:test-utils", version.ref = "testUtils" }
@@ -28,6 +33,9 @@ gradle-kmock = { module = "tech.antibytes.kmock:kmock-gradle", version.ref = "km
 kotlinResult = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "kotlinResult" }
 sdk = { module = "tech.antibytes.awesomecats:clientSDK", version.ref = "sdk" }
 seikoImage = { module = "io.github.qdsfdhvh:image-loader", version.ref = "seikoImage" }
+nativeBundler = { module = "org.scijava:native-lib-loader", version.ref = "nativeBundler" }
+rust = { module = "org.mozilla.rust-android-gradle:plugin", version.ref = "rust" }
 
 [plugins]
 kmock = { id = "tech.antibytes.kmock.kmock-gradle", version.ref = "kmock" }
+rust = { id = "org.mozilla.rust-android-gradle.rust-android", version.ref = "rust"}

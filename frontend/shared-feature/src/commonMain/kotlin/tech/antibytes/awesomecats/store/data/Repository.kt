@@ -6,20 +6,20 @@
 
 package tech.antibytes.awesomecats.store.data
 
-import kotlin.random.Random
 import tech.antibytes.awesomecats.common.entity.Cat
 import tech.antibytes.awesomecats.store.data.RepositoryContract.Client
 import tech.antibytes.awesomecats.store.domain.RepositoryContract
 import tech.antibytes.awesomecats.store.model.FrontendCat
+import tech.antibytes.awesomecats.store.data.RepositoryContract.PurrResolver
 
 internal class Repository(
     private val client: Client,
-    private val random: Random,
+    private val purrResolver: PurrResolver
 ) : RepositoryContract {
-    private fun Cat.toFontEndCat(): FrontendCat {
+    private suspend fun Cat.toFontEndCat(): FrontendCat {
         return FrontendCat(
             url = url,
-            purrLevel = random.nextInt(),
+            purrLevel = purrResolver.resolve(),
         )
     }
 
@@ -29,7 +29,7 @@ internal class Repository(
         } catch (_: Throwable) {
             FrontendCat(
                 "https://i.ytimg.com/vi/esxNJjOoTOQ/maxresdefault.jpg",
-                0,
+                "0",
             )
         }
     }

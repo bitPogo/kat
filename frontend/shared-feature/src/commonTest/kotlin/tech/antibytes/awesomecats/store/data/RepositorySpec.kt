@@ -7,7 +7,6 @@
 package tech.antibytes.awesomecats.store.data
 
 import kotlin.js.JsName
-import kotlin.random.Random
 import kotlin.test.Test
 import kotlinx.coroutines.test.runTest
 import tech.antibytes.awesomecats.store.model.FrontendCat
@@ -18,10 +17,13 @@ import tech.antibytes.kmock.KMock
 import tech.antibytes.kmock.KMockExperimental
 import tech.antibytes.util.test.fulfils
 import tech.antibytes.util.test.mustBe
+import tech.antibytes.awesomecats.store.data.RepositoryContract.Client
+import tech.antibytes.awesomecats.store.data.RepositoryContract.PurrResolver
 
 @OptIn(KMockExperimental::class)
 @KMock(
-    RepositoryContract.Client::class,
+    Client::class,
+    PurrResolver::class,
 )
 class RepositorySpec {
     private val fixture = kotlinFixture()
@@ -29,7 +31,7 @@ class RepositorySpec {
     @Test
     @JsName("fn0")
     fun `It fulfils the RepositoryContract`() {
-        Repository(kmock(), TestRandom(7)) fulfils RepositoryContract::class
+        Repository(kmock(), kmock()) fulfils RepositoryContract::class
     }
 
     @Test
@@ -38,16 +40,17 @@ class RepositorySpec {
         // Given
         val response = "{}"
         val client: ClientMock = kmock()
+        val resolver: PurrResolverMock = kmock()
 
         client._fetchCat returns response
 
         // When
-        val actual = Repository(client, TestRandom(23)).fetchFrontendCat()
+        val actual = Repository(client, resolver).fetchFrontendCat()
 
         // Then
         actual mustBe FrontendCat(
             "https://i.ytimg.com/vi/esxNJjOoTOQ/maxresdefault.jpg",
-            0,
+            "0",
         )
     }
 
@@ -57,27 +60,20 @@ class RepositorySpec {
         // Given
         val pur: Int = fixture.fixture()
         val url: Int = fixture.fixture()
-        val random = TestRandom(pur)
+        val resolver: PurrResolverMock = kmock()
         val response = "{\"url\":\"$url\", \"id\":\"${fixture.fixture<Int>()}\"}"
         val client: ClientMock = kmock()
 
         client._fetchCat returns response
+        resolver._resolve returns pur.toString()
 
         // When
-        val actual = Repository(client, random).fetchFrontendCat()
+        val actual = Repository(client, resolver).fetchFrontendCat()
 
         // Then
         actual mustBe FrontendCat(
-            purrLevel = pur,
+            purrLevel = pur.toString(),
             url = url.toString(),
         )
-    }
-
-    private class TestRandom(private val nextInt: Int) : Random() {
-        override fun nextBits(bitCount: Int): Int {
-            TODO("Not yet implemented")
-        }
-
-        override fun nextInt(): Int = nextInt
     }
 }

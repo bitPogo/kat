@@ -1,0 +1,12 @@
+{
+  "name": "bigint_arithmetic",
+  "version": "0.1.0",
+  "files": [
+    "bigint_arithmetic_bg.wasm",
+    "bigint_arithmetic.js",
+    "bigint_arithmetic.d.ts"
+  ],
+  "module": "bigint_arithmetic.js",
+  "types": "bigint_arithmetic.d.ts",
+  "sideEffects": false
+}
