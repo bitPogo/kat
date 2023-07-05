@@ -12,7 +12,7 @@ import kotlin.text.encodeToByteArray
 
 internal object BigUIntArithmetic : BigUIntegerContract.BigUIntArithmetic {
     private fun CPointer<ByteVar>.toByteArrayAndFree(): ByteArray { 
-        return toKString().also { println() }.encodeToByteArray().also {
+        return toKString().encodeToByteArray().also {
             freeString(this)
         }
     }

@@ -5,6 +5,7 @@ import org.junit.Test
 import tech.antibytes.util.test.mustBe
 
 class BigUIntArithmeticSpec {
+
     @OptIn(ExperimentalUnsignedTypes::class)
     @Test
     fun Given_two_numbers_it_adds_them() {

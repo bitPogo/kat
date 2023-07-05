@@ -27,6 +27,6 @@ internal actual class PurrResolver actual constructor(
             random.nextInt().absoluteValue.toString()
         )
 
-        return (factor1 * factor2).toString()
+        return (factor1 * factor2).asString()
     }
 }

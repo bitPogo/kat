@@ -15,22 +15,18 @@ import tech.antibytes.kfixture.kotlinFixture
 import tech.antibytes.kmock.KMock
 import tech.antibytes.kmock.KMockExperimental
 import tech.antibytes.kmock.verification.assertProxy
-import tech.antibytes.util.test.annotations.IgnoreJs
 import tech.antibytes.util.test.mustBe
 import kotlin.js.JsName
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 import kotlin.test.Test
 
-expect interface PurrLevel
-
 @OptIn(KMockExperimental::class)
 @KMock(
     PurrMultiplier::class,
     PurrLevel::class
 )
-@IgnoreJs
-class PurrResolverSpec {
+class PurrResolverJsSpec {
     private val fixture = kotlinFixture()
 
     @Test
@@ -47,7 +43,7 @@ class PurrResolverSpec {
 
         multiplier._fromWithString returns result
         result._times returns result
-        result._toString returns resultValue.toString()
+        result._asString returns resultValue.toString()
 
         // When
         val actual = PurrResolver(random, multiplier as PurrMultiplier).resolve()
@@ -59,7 +55,7 @@ class PurrResolverSpec {
             multiplier._fromWithString.hasBeenCalledWith(number1.toString())
             multiplier._fromWithString.hasBeenCalledWith(number2.toString())
             result._times.hasBeenCalledWith(result)
-            result._toString.hasBeenCalled()
+            result._asString.hasBeenCalled()
         }
     }
 
@@ -77,7 +73,7 @@ class PurrResolverSpec {
 
         multiplier._fromWithString returns result
         result._times returns result
-        result._toString returns resultValue.toString()
+        result._asString returns resultValue.toString()
 
         // When
         val actual = PurrResolver(random, multiplier as PurrMultiplier).resolve()
@@ -89,7 +85,7 @@ class PurrResolverSpec {
             multiplier._fromWithString.hasBeenCalledWith(number1.absoluteValue.toString())
             multiplier._fromWithString.hasBeenCalledWith(number2.absoluteValue.toString())
             result._times.hasBeenCalledWith(result)
-            result._toString.hasBeenCalled()
+            result._asString.hasBeenCalled()
         }
     }
 

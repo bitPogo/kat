@@ -4,7 +4,6 @@
  * Use of this source code is governed by Apache v2.0
  */
 
-// #![cfg(not(target_family="wasm"))]
 #![allow(non_snake_case)]
 use super::*;
 use jni::JNIEnv;

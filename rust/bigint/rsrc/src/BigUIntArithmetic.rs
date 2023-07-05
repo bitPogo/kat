@@ -151,9 +151,10 @@ pub fn _compare(
 
 #[cfg(target_family="wasm")]
 mod WASM;
-// #[cfg(not(target_family="wasm"))]
+#[cfg(all(not(target_family="wasm")))]//, feature="jvm"))] // FIXME
 // mod Jvm;
-#[cfg(not(target_family="wasm"))]
 mod Native;
+// #[cfg(all(not(target_family="wasm"), feature="native"))] // FIXME
+// mod Native
 #[cfg(test)]
 mod BigIntegerArithmeticSpec;

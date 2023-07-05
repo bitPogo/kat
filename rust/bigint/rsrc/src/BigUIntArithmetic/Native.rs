@@ -41,7 +41,7 @@ pub extern "C" fn subtractNative(
         strToVec(minuend),
         strToVec(subtrahend),
     );
-    
+
     return wrapResult(result);
 }
 
@@ -54,7 +54,7 @@ pub extern "C" fn multiplyNative(
         strToVec(factor1),
         strToVec(factor2),
     );
-    
+
     return wrapResult(result);
 }
 
@@ -67,7 +67,7 @@ pub extern "C"  fn divideNative(
         strToVec(dividend),
         strToVec(divisor),
     );
-    
+
     return wrapResult(result);
 }
 
@@ -80,7 +80,7 @@ pub extern "C"  fn remainderNative(
         strToVec(number),
         strToVec(modulus),
     );
-    
+
     return wrapResult(result);
 }
 
@@ -93,7 +93,7 @@ pub extern "C"  fn gcdNative(
         strToVec(number),
         strToVec(modulus),
     );
-    
+
     return wrapResult(result);
 }
 
@@ -106,7 +106,7 @@ pub extern "C"  fn shiftLeftNative(
         strToVec(number),
         shifts.try_into().unwrap(),
     );
-    
+
     return wrapResult(result);
 }
 
@@ -119,7 +119,7 @@ pub extern "C"  fn shiftRightNative(
         strToVec(number),
         shifts.try_into().unwrap(),
     );
-    
+
     return wrapResult(result);
 }
 
@@ -134,7 +134,7 @@ pub extern "C"  fn modPowNative(
         strToVec(exponent),
         strToVec(modulus),
     );
-    
+
     return wrapResult(result);
 }
 
@@ -182,7 +182,7 @@ pub extern "C" fn compareNative(
 #[no_mangle]
 pub extern "C"  fn getProbablePrimeNative(size: i32) -> *const c_char {
     let result = _getProbablePrime(size.try_into().unwrap());
-    
+
     return wrapResult(result);
 }*/
 
