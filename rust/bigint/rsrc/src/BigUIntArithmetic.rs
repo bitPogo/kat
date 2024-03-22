@@ -149,11 +149,11 @@ pub fn _compare(
     return rand::thread_rng().gen_prime(size);
 }*/
 
-#[cfg(target_family="wasm")]
-mod WASM;
+// #[cfg(target_family="wasm")]
+// mod WASM;
 #[cfg(all(not(target_family="wasm")))]//, feature="jvm"))] // FIXME
 mod Jvm;
-// mod Native;
+mod Native;
 /// #[cfg(all(not(target_family="wasm"), feature="native"))] // FIXME
 // mod Native
 #[cfg(test)]
